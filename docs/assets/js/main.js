@@ -1,1 +1,1 @@
-"use strict";console.log(">> Ready :)");
+"use strict";const btn=document.querySelector(".js-button-search");console.log("Holis");
