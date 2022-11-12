@@ -5,6 +5,8 @@
 @import 'layout/page';
 @import 'pages/index';
 
+
+//POR QUÉ NO ME COGE LA IMAGEN??
 // .header {
 //     background-image: url(./assets/img/1600x900-Breaking-Bad-Heisenberg-Wallpaper-Full-HD-Descarga-gratuita.jpg) no-repeat;
 // }
@@ -26,9 +28,10 @@
 }
 
 .container-characters {
+    width: 100vw;
     display: flex;
     flex-direction: row; 
-    // grid-template-columns: 1fr 250px;
+    justify-content: space-around;
     gap: 30px;
 }
 
@@ -42,8 +45,11 @@
     padding-inline: 15px;
     border: solid black 2px;
 }
+.photo {
+    height: 150px;
+}
 
-
+//SELECCIONAR PERSONAJE
 // .selected {
 //     background-color: rgb(252, 174, 198);
 // }

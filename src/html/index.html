@@ -15,46 +15,46 @@
   <main class="main">
     <form class="form">
       <input
-        class="input"
+        class="input-search js-input-search"
         type="text"
         placeholder="Example: Walter White"
       />
       <button class="button js-button-search">Search</button>
     </form>
 
-    <p>Characters</p>
+    <div class="container-characters">
+      <section class="section__fav">
+        <h2 class="section__fav-title">Favourites</h2>
+        <ul class="favourites-list js-favourites-list">
+          <li class="favourite-character">Favourite1</li>
+          <li class="favourite-character">Favourite2</li>
+        </ul>
+      </section>
 
-    <section class="container-characters">
+      <section class="section__characters">
+        <h2 class="section__characters-title">Characters</h2>
+        <ul class="characters-list js-characters-list">
+          <li>
+            Cargando...
+          </li>
+          <li>
+            <article class="character selected">
+              <img src="" alt="" class="photo">
+              <h3 class="name">Character 2</h3>
+              <p class="status"></p>
+            </article>
+          </li>
+          <li>
+            <article class="character selected">
+              <img src="" alt="" class="photo">
+              <h3 class="name">Character 3</h3>
+              <p class="status"></p>
+            </article>
+          </li>
+        </ul>
+      </section>
 
-      <ul class="favourites">
-        <li class="favourite-character">Favourite1</li>
-        <li class="favourite-character">Favourite2</li>
-      </ul>
-
-      <ul class="characters-list">
-        <li>
-          <article class="character selected">
-            <img src="" alt="" class="photo">
-            <h3 class="name">Character 1</h3>
-            <p class="live"></p>
-          </article>
-        </li>
-        <li>
-          <article class="character selected">
-            <img src="" alt="" class="photo">
-            <h3 class="name">Character 2</h3>
-            <p class="live"></p>
-          </article>
-        </li>
-        <li>
-          <article class="character selected">
-            <img src="" alt="" class="photo">
-            <h3 class="name">Character 3</h3>
-            <p class="live"></p>
-          </article>
-        </li>
-      </ul>
-    </section>
+    </div>
 
   </main>
   <script src="./assets/js/main.js"></script>
