@@ -8,6 +8,8 @@ const inputSearch = document.querySelector('.js-input-search');
 const btnSearch = document.querySelector('.js-button-search');
 //Ul de la lista los personajes
 let characterList = document.querySelector('.js-characters-list');
+//Ul de la lista de favoritos
+let favouritesList = document.querySelector('.js-favourites-list');
 
 //VARIABLES GLOBALES (vacías, para rellenar con API)
 
@@ -21,7 +23,7 @@ let characterCard = '';
 let textInput = '';
 
 
-//Función para pintar los personajes
+//Función para pintar los personajes       ¿SIMPLIFICAR CON LA LISTA COMO PARÁMETRO?
 const renderAllCharacters = () => {
   let characterCardContent = '';
   characterCard = '';
@@ -29,7 +31,7 @@ const renderAllCharacters = () => {
   //Bucle para recorrer el API
   for (const character of allCharacters) {
     characterCardContent = `<li>
-        <article class="js-character character">
+        <article class="js-character character" id="${character.char_id}">
         <img src='${character.img}' alt="Foto de personaje" class="photo">
         <h3 class="name">${character.name}</h3>
         <p class="status">${character.status}</p>
@@ -44,6 +46,27 @@ const renderAllCharacters = () => {
   addCharactersListeners();
 };
 
+//Función para pintar los favoritos       ¿SIMPLIFICAR CON LA LISTA COMO PARÁMETRO?
+function renderFavouritesCharacters() {
+  let characterCardContent = '';
+  characterCard = '';
+  favouritesList.innerHTML = '';
+  //Bucle para recorrer el API
+  for (const character of favouriteCharacters) {
+    characterCardContent = `<li>
+        <article class="js-character character" id="${character.char_id}">
+        <img src='${character.img}' alt="Foto de personaje" class="photo">
+        <h3 class="name">${character.name}</h3>
+        <p class="status">${character.status}</p>
+        </article>
+        </li>`;
+    //Meto el contenido en cada tarjeta
+    characterCard += characterCardContent;
+    //Pinto las tarjetas en el ul
+    favouritesList.innerHTML = characterCard;
+  }
+}
+
 //Función para traer los datos de los personajes del API
 const getApiData = () => {
   allCharacters= [];
@@ -55,6 +78,7 @@ const getApiData = () => {
       renderAllCharacters();
     });
 };
+
 
 //Función para buscar en el input
 const searchCharacter = (event) => {
@@ -70,9 +94,24 @@ const searchCharacter = (event) => {
 function handleClickCard(event) {
   //Añade o quita clase selected a cada artículo
   event.currentTarget.classList.toggle('selected');
-  console.log('Has hecho click');
-  console.log(event.currentTarget.id);
-};
+
+  //Recorre cada objeto de allCharacters y devuelve en una const el que tiene el id donde he hecho click
+  const selectedCharacter = allCharacters.find((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
+  const characterInFavouritesIndex = favouriteCharacters.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
+
+  //Condicional si el objeto no está en Favoritos(lo meta), si está(lo saque)
+  if (characterInFavouritesIndex === -1) {
+    //Le pongo el objeto en Favoritos
+    favouriteCharacters.push(selectedCharacter);
+  } else {
+    //Le quito el objeto de Favoritos
+    favouriteCharacters.splice(characterInFavouritesIndex, 1);
+  }
+
+  //Pinto los favoritos
+  renderFavouritesCharacters();
+
+}
 
 //ADDEVENTLISTENERS
 //Escucha al botón Search
@@ -85,7 +124,7 @@ function addCharactersListeners() {
   for (const eachCharacterArticle of allCharactersArticles) {
     eachCharacterArticle.addEventListener('click', handleClickCard);
   }
-};
+}
 
 
 //CÓDIGO QUE SE EJECUTA AL CARGAR LA PÁGINA
