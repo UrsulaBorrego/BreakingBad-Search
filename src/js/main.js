@@ -10,6 +10,8 @@ const btnSearch = document.querySelector('.js-button-search');
 let characterList = document.querySelector('.js-characters-list');
 //Ul de la lista de favoritos
 let favouritesList = document.querySelector('.js-favourites-list');
+//Botón Reset
+const btnReset = document.querySelector('.js-button-reset');
 
 //VARIABLES GLOBALES (vacías, para rellenar con API)
 
@@ -22,6 +24,7 @@ let characterCard = '';
 //Recoje el valor del input
 let textInput = '';
 
+//FUNCIONES
 
 //Función para pintar los personajes       ¿SIMPLIFICAR CON LA LISTA COMO PARÁMETRO?
 const renderAllCharacters = () => {
@@ -48,6 +51,20 @@ const renderAllCharacters = () => {
 
 //Función para pintar los favoritos       ¿SIMPLIFICAR CON LA LISTA COMO PARÁMETRO?
 function renderFavouritesCharacters() {
+
+  // //Recorre cada objeto de favouriteCharacters y devuelve en una const el que tiene el id donde he hecho click
+  // const characterInFavouritesIndex = favouriteCharacters.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(character.char_id));
+  // //Variable que contiene clase
+  // let classFavourite = '';
+  // //Condicional que comprueba si un personaje está marcado como Favorito o no
+  // if (characterInFavouritesIndex === -1) {
+  //   classFavourite = '';
+  // } else {
+  //   classFavourite = 'selected';
+  // }
+
+  // Falta el ${classFavourite} en las clases del article
+
   let characterCardContent = '';
   characterCard = '';
   favouritesList.innerHTML = '';
@@ -74,11 +91,9 @@ const getApiData = () => {
     .then((response) => response.json())
     .then((data) => {
       allCharacters.push(...data); //Agrego un array a otro array
-      //characterList.innerHTML = JSON.stringify(allCharacters); //ME PINTA TODOS LOS OBJETOS
       renderAllCharacters();
     });
 };
-
 
 //Función para buscar en el input
 const searchCharacter = (event) => {
@@ -97,6 +112,7 @@ function handleClickCard(event) {
 
   //Recorre cada objeto de allCharacters y devuelve en una const el que tiene el id donde he hecho click
   const selectedCharacter = allCharacters.find((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
+  //Igual pero recorriendo favouriteCharacters
   const characterInFavouritesIndex = favouriteCharacters.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
 
   //Condicional si el objeto no está en Favoritos(lo meta), si está(lo saque)
@@ -108,14 +124,29 @@ function handleClickCard(event) {
     favouriteCharacters.splice(characterInFavouritesIndex, 1);
   }
 
+  //localStorage para guardar los Favoritos, pasando el array a texto con stringify
+  localStorage.setItem('localFavouriteCharacters', JSON.stringify(favouriteCharacters));
+
   //Pinto los favoritos
   renderFavouritesCharacters();
-
 }
 
+//Función para borrar favoritos con botón reset
+function deleteFavourites(event) {
+  event.preventDefault();
+  favouritesList.innerHTML = '';
+  favouriteCharacters = [];
+  localStorage.clear();
+  //classList.remove('selected');    //QUIERO QUITAR LA CLASE SELECTED PERO A QUIÉN?
+}
+
+
 //ADDEVENTLISTENERS
+
 //Escucha al botón Search
 btnSearch.addEventListener('click',searchCharacter);
+//Escucha al botón Reset
+btnReset.addEventListener('click',deleteFavourites);
 
 //Función para añadir listeners a personajes
 function addCharactersListeners() {
@@ -128,5 +159,18 @@ function addCharactersListeners() {
 
 
 //CÓDIGO QUE SE EJECUTA AL CARGAR LA PÁGINA
+
 getApiData();
 handleClickCard();
+
+//Recupera los Favoritos marcados aunque se actualice la página,
+//y con parse lo transforma a objeto
+const savedFavourites = JSON.parse(localStorage.getItem('localFavouriteCharacters'));
+
+console.log(savedFavourites);
+
+//Condicional para ver si localStorage es null     NO APARECEN FAVORITAS PINTADAS AL REFRESCAR
+if (savedFavourites !== null) {   //!== es ≠
+  favouriteCharacters = savedFavourites;
+  renderFavouritesCharacters();
+}
