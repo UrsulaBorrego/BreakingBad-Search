@@ -6,7 +6,7 @@
 @import 'pages/index';
 
 
-//POR QUÉ NO ME COGE LA IMAGEN??
+//POR QUÉ NO ME APARECEN LAS IMÁGENES EN PUBLIC??
 // .header {
 //     background-image: url(./assets/img/1600x900-Breaking-Bad-Heisenberg-Wallpaper-Full-HD-Descarga-gratuita.jpg) no-repeat;
 // }
@@ -20,8 +20,12 @@
     align-items: center;
 }
 
-// .form {
-// }
+.form {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
 
 .button {
     cursor: pointer;
@@ -31,25 +35,33 @@
     width: 100vw;
     display: flex;
     flex-direction: row; 
-    justify-content: space-around;
+    // justify-content: space-around;
     gap: 30px;
 }
 
+// .section__fav {
+// };
+
 .characters-list {
+    width: 70%;
+    height: auto;
     display: flex;
-    justify-content: space-around;
+    // justify-content: space-around;
     gap: 10px;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .character {
     padding-inline: 15px;
     border: solid black 2px;
+    cursor: pointer;
 }
 .photo {
-    height: 150px;
+    height: 250px;
 }
 
-//SELECCIONAR PERSONAJE
-// .selected {
-//     background-color: rgb(252, 174, 198);
-// }
+// SELECCIONAR PERSONAJE
+.selected {
+    background-color: rgb(252, 174, 198);
+}

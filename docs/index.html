@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Adalab Web Starter Kit</title>
+  <title>Breaking Bad Character Finder</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/main.css" />
-  <link rel="icon" href="./assets/images/favicon.png" />
+  <!-- <link rel="shortcut icon" href="./assets/images/icono-bb.png" /> -->
 </head>
 
 <body>
@@ -15,46 +15,29 @@
   <main class="main">
     <form class="form">
       <input
-        class="input"
+        class="js-input-search input-search "
         type="text"
         placeholder="Example: Walter White"
       />
-      <button class="button js-button-search">Search</button>
+      <button class="js-button-search button">Search</button>
     </form>
 
-    <p>Characters</p>
+    <div class="container-characters">
+      <section class="section__fav">
+        <h2 class="section__fav-title">Favourites</h2>
+        <ul class="js-favourites-list favourites-list">
+          <li class="favourite-character">Favourite1</li>
+          <li class="favourite-character">Favourite2</li>
+        </ul>
+      </section>
 
-    <section class="container-characters">
+      <section class="js-section__characters section__characters">
+        <h2 class="section__characters-title">Characters</h2>
+        <ul class="js-characters-list characters-list">
+        </ul>
+      </section>
 
-      <ul class="favourites">
-        <li class="favourite-character">Favourite1</li>
-        <li class="favourite-character">Favourite2</li>
-      </ul>
-
-      <ul class="characters-list">
-        <li>
-          <article class="character selected">
-            <img src="" alt="" class="photo">
-            <h3 class="name">Character 1</h3>
-            <p class="live"></p>
-          </article>
-        </li>
-        <li>
-          <article class="character selected">
-            <img src="" alt="" class="photo">
-            <h3 class="name">Character 2</h3>
-            <p class="live"></p>
-          </article>
-        </li>
-        <li>
-          <article class="character selected">
-            <img src="" alt="" class="photo">
-            <h3 class="name">Character 3</h3>
-            <p class="live"></p>
-          </article>
-        </li>
-      </ul>
-    </section>
+    </div>
 
   </main>
   <script src="./assets/js/main.js"></script>
