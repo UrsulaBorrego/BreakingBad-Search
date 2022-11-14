@@ -26,15 +26,29 @@ let textInput = '';
 
 //FUNCIONES
 
-//Función para pintar los personajes       ¿SIMPLIFICAR CON LA LISTA COMO PARÁMETRO?
+//Función para pintar los personajes
 const renderAllCharacters = () => {
+
   let characterCardContent = '';
   characterCard = '';
   characterList.innerHTML = '';
   //Bucle para recorrer el API
   for (const character of allCharacters) {
+
+    ////Para que se queden marcadas como favoritas las almacenadas en localStorage:
+    //Para saber si es favorita o no: recorre cada objeto de favouriteCharacters y devuelve en una const el que tiene el id donde he hecho click
+    const characterInFavouritesIndex = favouriteCharacters.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(character.char_id));
+    //Variable que contiene clase
+    let classFavourite = '';
+    //Condicional que comprueba si un personaje está marcado como Favorito o no
+    if (characterInFavouritesIndex === -1) {
+      classFavourite = '';
+    } else {
+      classFavourite = 'selected';
+    }
+
     characterCardContent = `<li>
-        <article class="js-character character" id="${character.char_id}">
+        <article class="js-character ${classFavourite} character" id="${character.char_id}">
         <img src='${character.img}' alt="Foto de personaje" class="photo">
         <h3 class="name">${character.name}</h3>
         <p class="status">${character.status}</p>
@@ -49,29 +63,15 @@ const renderAllCharacters = () => {
   addCharactersListeners();
 };
 
-//Función para pintar los favoritos       ¿SIMPLIFICAR CON LA LISTA COMO PARÁMETRO?
+//Función para pintar los favoritos
 function renderFavouritesCharacters() {
-
-  // //Recorre cada objeto de favouriteCharacters y devuelve en una const el que tiene el id donde he hecho click
-  // const characterInFavouritesIndex = favouriteCharacters.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(character.char_id));
-  // //Variable que contiene clase
-  // let classFavourite = '';
-  // //Condicional que comprueba si un personaje está marcado como Favorito o no
-  // if (characterInFavouritesIndex === -1) {
-  //   classFavourite = '';
-  // } else {
-  //   classFavourite = 'selected';
-  // }
-
-  // Falta el ${classFavourite} en las clases del article
-
   let characterCardContent = '';
   characterCard = '';
   favouritesList.innerHTML = '';
   //Bucle para recorrer el API
   for (const character of favouriteCharacters) {
     characterCardContent = `<li>
-        <article class="js-character character" id="${character.char_id}">
+        <article class="js-character-favourite character" id="${character.char_id}">
         <img src='${character.img}' alt="Foto de personaje" class="photo">
         <h3 class="name">${character.name}</h3>
         <p class="status">${character.status}</p>
@@ -82,6 +82,19 @@ function renderFavouritesCharacters() {
     //Pinto las tarjetas en el ul
     favouritesList.innerHTML = characterCard;
   }
+
+  // //Botón delete cada personaje
+  // const allBtnDelete = document.querySelectorAll('.js-button-delete');
+
+  // for (const btnDelete of allBtnDelete) {
+  //   btnDelete.addEventListener('click', (event) => {
+  //     event.preventDefault();
+  //     console.log('He hecho click');
+  //   });
+  // }
+
+  // Este botón tiene que ir entre el p y article de favorito:  <button class="js-button-delete button-delete">X</button>
+
 }
 
 //Función para traer los datos de los personajes del API
@@ -137,7 +150,8 @@ function deleteFavourites(event) {
   favouritesList.innerHTML = '';
   favouriteCharacters = [];
   localStorage.clear();
-  //classList.remove('selected');    //QUIERO QUITAR LA CLASE SELECTED PERO A QUIÉN?
+  //Vuelvo a pintar todo el listado para quitar selected de allCharacters
+  renderAllCharacters();
 }
 
 
@@ -145,6 +159,7 @@ function deleteFavourites(event) {
 
 //Escucha al botón Search
 btnSearch.addEventListener('click',searchCharacter);
+
 //Escucha al botón Reset
 btnReset.addEventListener('click',deleteFavourites);
 
@@ -160,17 +175,15 @@ function addCharactersListeners() {
 
 //CÓDIGO QUE SE EJECUTA AL CARGAR LA PÁGINA
 
-getApiData();
-handleClickCard();
-
 //Recupera los Favoritos marcados aunque se actualice la página,
 //y con parse lo transforma a objeto
 const savedFavourites = JSON.parse(localStorage.getItem('localFavouriteCharacters'));
 
-console.log(savedFavourites);
-
-//Condicional para ver si localStorage es null     NO APARECEN FAVORITAS PINTADAS AL REFRESCAR
+//Condicional para ver si localStorage es null
 if (savedFavourites !== null) {   //!== es ≠
   favouriteCharacters = savedFavourites;
   renderFavouritesCharacters();
 }
+
+getApiData();
+handleClickCard();
