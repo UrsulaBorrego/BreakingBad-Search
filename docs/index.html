@@ -10,24 +10,27 @@
   <link rel="icon" type="image/x-icon" href="./assets/images/favicon.png">
 </head>
 
-<body>
+<body class="body">
   <header class="header"></header>
-  <main class="main">
-    <form class="form">
+  <main>
+    <form class="form__search">
       <input
         class="js-input-search input-search "
         type="text"
         placeholder="Example: Walter White"
       />
-      <button class="js-button-search button">Search</button>
+      <button class="js-button-search button-search">Search</button>
     </form>
 
     <div class="container-characters">
-      <section class="section__fav">
-        <h2 class="section__fav-title">Favourites</h2>
+
+      <section>
+        <div class="fav-reset-container">
+          <h2 class="section__fav-title">Favourites</h2>
+          <button class="js-button-reset button-reset">Reset</button>
+        </div>
         <ul class="js-favourites-list favourites-list">
         </ul>
-        <button class="js-button-reset">Reset</button>
       </section>
 
       <section class="js-section__characters section__characters">
