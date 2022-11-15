@@ -71,7 +71,7 @@ function renderFavouritesCharacters() {
   //Bucle para recorrer el API
   for (const character of favouriteCharacters) {
     characterCardContent = `<li>
-        <article class="js-character-favourite character" id="${character.char_id}">
+        <article class="js-character selected character" id="${character.char_id}" data-id="${character.char_id}">
         <img src='${character.img}' alt="Foto de personaje" class="photo">
         <h3 class="name">${character.name}</h3>
         <p class="status">${character.status}</p>
@@ -82,19 +82,6 @@ function renderFavouritesCharacters() {
     //Pinto las tarjetas en el ul
     favouritesList.innerHTML = characterCard;
   }
-
-  // //Botón delete cada personaje
-  // const allBtnDelete = document.querySelectorAll('.js-button-delete');
-
-  // for (const btnDelete of allBtnDelete) {
-  //   btnDelete.addEventListener('click', (event) => {
-  //     event.preventDefault();
-  //     console.log('He hecho click');
-  //   });
-  // }
-
-  // Este botón tiene que ir entre el p y article de favorito:  <button class="js-button-delete button-delete">X</button>
-
 }
 
 //Función para traer los datos de los personajes del API

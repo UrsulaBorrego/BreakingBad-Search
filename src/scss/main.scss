@@ -5,86 +5,20 @@
 @import 'layout/page';
 @import 'pages/index';
 
+*{
+    font-family: $font-secondary;
+}
+
 .body {
-    background-color: rgb(192, 228, 247);
-};
-
-.header {
-    height: 200px;
-    background-color:rgb(10, 98, 133);
-    background-image: url(./assets/img/1600x900-Breaking-Bad-Heisenberg-Wallpaper-Full-HD-Descarga-gratuita.jpg) no-repeat;
+    background-color: $color-background;
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-.form__search {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-// .input-search {
-// }
-
-.button-search {
-    cursor: pointer;
-}
-
-//CONTENEDOR TANTO LISTA COMO FAVORITOS
-.container-characters {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.fav-reset-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.button-reset {
-    cursor: pointer;
-}
-
-.favourites-list {
-    width: 200px;
-}
-
-.section__characters {
-    width: 80vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.characters-list {
-    gap: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-
-.character {
-    width: 200px;
-    height: 300px;
-    background-color: white;
-    border-radius: 10px;
-    padding-inline: 15px;
-    // margin-bottom: 10px;
-    border: solid black 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.photo {
-    height: 250px;
-    width: 180px;
-    object-fit: cover;
-}
-
-// SELECCIONAR PERSONAJE
+//MARCA LOS SELECCIONADOS
 .selected {
-    background-color: rgb(10, 98, 133);
+    background-color: $color-logo;
 }
-
-//FALTA EL FOOTER
