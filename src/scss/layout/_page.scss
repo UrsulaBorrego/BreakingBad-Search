@@ -8,13 +8,15 @@
     // border-radius: 25px;
     // opacity: 90%;
     .input-search {
-        padding-right: 60px;
-        // border-radius: ;
+        padding-inline: 60px;
+        border-radius: 30px;
+        padding: 8px 150px;
     }
     .button-search {
         background-color: $color-secondary;
         border-color: $color-secondary;
-        border-radius: 10px;
+        border-radius: 30px;
+        padding: 8px 20px;
         cursor: pointer;
     }
 }
@@ -30,16 +32,19 @@
 .fav-reset-container {
     display: flex;
     justify-content: space-between;
-    // .section__fav-title{
-    //     background-image: url(../images/bf994bdae83b05978843c1b83c1d66db.png);
-    // }
-}
-
-.button-reset {
-    background-color: $color-secondary;
-    border-color: $color-secondary;
-    border-radius: 10px;
-    cursor: pointer;
+    align-items: center;
+    height: 50px;
+    .section__fav-title{
+        color: $color-logo;
+        // background-image: url(../images/bf994bdae83b05978843c1b83c1d66db.png);
+    }
+    .button-reset {
+        background-color: $color-secondary;
+        border-color: $color-secondary;
+        border-radius: 30px;
+        padding: 8px 20px;
+        cursor: pointer;
+    }
 }
 
 .favourites-list {
@@ -54,6 +59,10 @@
 
     .section__characters-title {
         background-image: url();
+        height: 50px;
+        display: flex;
+        align-items: center;
+        color: $color-logo;
     }
 
     .characters-list {
@@ -68,7 +77,7 @@
 
 .character {
     width: 200px;
-    height: 300px;
+    height: 320px;
     background-color: white;
     border-radius: 10px;
     padding-inline: 15px;
@@ -78,12 +87,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
     cursor: pointer;
-    transform: scale(1);
-}
-.photo {
-    height: 250px;
-    width: 180px;
-    object-fit: cover;
-    border-radius: 10px;
+    &:hover {
+        background-color: $color-secondary;
+        transition: 1s;
+    }
+    .photo {
+        height: 240px;
+        width: 170px;
+        object-fit: cover;
+        border-radius: 10px;
+        &:hover {
+            transform: scale(1.02);
+            transition: 1s;
+        }
+    }
+    .name {
+        padding-inline: 5px 3px;
+    }
+    // .status {
+    //     // padding-bottom: 5px;
+    // }
 }

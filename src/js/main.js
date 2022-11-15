@@ -48,11 +48,11 @@ const renderAllCharacters = () => {
     }
 
     characterCardContent = `<li>
-        <article class="js-character ${classFavourite} character" id="${character.char_id}">
-        <img src='${character.img}' alt="Foto de personaje" class="photo">
-        <h3 class="name">${character.name}</h3>
-        <p class="status">${character.status}</p>
-        </article>
+         <article class="js-character ${classFavourite} character" id="${character.char_id}">
+          <img src='${character.img}' alt="Foto de personaje" class="photo">
+          <h3 class="name">${character.name}</h3>
+          <p class="status">${character.status}</p>
+         </article>
         </li>`;
     //Meto el contenido en cada tarjeta
     characterCard += characterCardContent;
@@ -98,9 +98,9 @@ const getApiData = () => {
 //Función para buscar en el input
 const searchCharacter = (event) => {
   event.preventDefault();
-  textInput = inputSearch.value;
+  textInput = inputSearch.value.toLowerCase();
   //Filtro el contenido del input por nombre y pinto solo los filtrados
-  let filterResult = allCharacters.filter(character=>character.name.includes(textInput));
+  let filterResult = allCharacters.filter(character=>character.name.toLowerCase().includes(textInput));
   allCharacters = filterResult;
   renderAllCharacters();
 };
