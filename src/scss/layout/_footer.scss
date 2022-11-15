@@ -9,13 +9,16 @@
     justify-content: space-evenly;
     position: fixed;
     bottom: 0;
+
     .ball-footer {
         transform: translateX(40%);
         transform: translateY(-35%);
+
         .ball-arrow{
         background-color: $color-secondary;
         border-color: $color-secondary;
         border-radius: 50%;
+        
           .arrow {
             width: 35px;
             height: 30px;

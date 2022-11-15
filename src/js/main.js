@@ -27,7 +27,7 @@ let textInput = '';
 //FUNCIONES
 
 //Función para pintar los personajes
-const renderAllCharacters = () => {
+function renderAllCharacters() {
 
   let characterCardContent = '';
   characterCard = '';
@@ -61,7 +61,7 @@ const renderAllCharacters = () => {
   }
   //Llamo a la función que añade los listeners a las tarjetas
   addCharactersListeners();
-};
+}
 
 //Función para pintar los favoritos
 function renderFavouritesCharacters() {
@@ -85,7 +85,7 @@ function renderFavouritesCharacters() {
 }
 
 //Función para traer los datos de los personajes del API
-const getApiData = () => {
+function getApiData() {
   allCharacters= [];
   fetch('https://breakingbadapi.com/api/characters')
     .then((response) => response.json())
@@ -93,17 +93,17 @@ const getApiData = () => {
       allCharacters.push(...data); //Agrego un array a otro array
       renderAllCharacters();
     });
-};
+}
 
 //Función para buscar en el input
-const searchCharacter = (event) => {
+function searchCharacter(event) {
   event.preventDefault();
   textInput = inputSearch.value.toLowerCase();
   //Filtro el contenido del input por nombre y pinto solo los filtrados
   let filterResult = allCharacters.filter(character=>character.name.toLowerCase().includes(textInput));
   allCharacters = filterResult;
   renderAllCharacters();
-};
+}
 
 //Función para seleccionar favoritos
 function handleClickCard(event) {
