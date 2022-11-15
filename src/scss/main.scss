@@ -1,12 +1,12 @@
-@import 'core/variables';
 @import 'core/reset';
+@import 'core/variables';
 @import 'layout/footer';
 @import 'layout/header';
 @import 'layout/page';
 @import 'pages/index';
 
 *{
-    font-family: $font-secondary;
+    font-family: $font-principal;
     font-size: 16px;
     font-weight: 400;
 }
@@ -22,8 +22,9 @@
 
 //MARCA LOS SELECCIONADOS
 .selected {
-    background-color: $color-logo;
+    background-color: $color-principal;
     .name {
         color: white;
+        letter-spacing: 1px;
     }
 }

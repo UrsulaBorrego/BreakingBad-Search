@@ -1,1 +1,12 @@
-//FALTA EL FOOTER
+.footer {
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+    background-color: $color-principal;
+    display: flex;
+    align-items: center;
+    justify-content: center; //Posibilidad de quitarlo para meter flecha
+    position: fixed;
+    bottom: 0;
+}
