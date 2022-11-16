@@ -13,6 +13,9 @@ let favouritesList = document.querySelector('.js-favourites-list');
 //Botón Reset
 const btnReset = document.querySelector('.js-button-reset');
 
+//Botón Log
+const btnLog = document.querySelector('.js-button-log');
+
 //VARIABLES GLOBALES (vacías, para rellenar con API)
 
 //Personajes
@@ -51,6 +54,7 @@ function renderAllCharacters() {
          <article class="js-character ${classFavourite} character" id="${character.char_id}">
           <img src='${character.img}' alt="Foto de personaje" class="photo">
           <h3 class="name">${character.name}</h3>
+          <p class="nickname">${character.nickname}</p>
           <p class="status">${character.status}</p>
          </article>
         </li>`;
@@ -158,6 +162,14 @@ function addCharactersListeners() {
     eachCharacterArticle.addEventListener('click', handleClickCard);
   }
 }
+
+//Escucha al botón Log
+btnLog.addEventListener('click', (event) => {
+  event.preventDefault();
+  for (const character of allCharacters) {
+    console.log(character.name);
+  }
+});
 
 
 //CÓDIGO QUE SE EJECUTA AL CARGAR LA PÁGINA
